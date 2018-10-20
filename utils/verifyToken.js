@@ -1,6 +1,6 @@
  function verifyToken(req, res, next)
 {
-   const token = req.body.token;
+   const token = req.body.token || req.headers.token;
    
    if(token)
    {

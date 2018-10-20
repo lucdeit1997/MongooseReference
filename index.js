@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const routerUser = require('./routing/user.router');
 const routerCategory = require('./routing/category-router')
 const roterProduct = require('./routing/product-router')
+const routerTagging = require('./routing/tagging.router')
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -12,7 +13,8 @@ app.use(bodyParser.urlencoded({
 
 app.use('/nguoi-dung',routerUser );
 app.use('/danh-muc', routerCategory);
-app.use('/san-pham', roterProduct)
+app.use('/san-pham', roterProduct);
+app.use('/tag', routerTagging);
 
 
 const uri = 'mongodb://localhost:27017/MongooseReference'
