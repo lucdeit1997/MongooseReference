@@ -11,7 +11,7 @@ router.use(bodyParser.urlencoded({
     extended: false
 }))
 
-router.post('/dang-ky.html', async(req, res) => {
+router.post('/dang-ky', async(req, res) => {
     const userBody = req.body;
     const hashPassword = await hash(userBody.password, 8);
     const checkExist = await Users.findOne({
@@ -66,7 +66,7 @@ router.post('/dang-ky.html', async(req, res) => {
         })
 })
 
-router.post('/dang-nhap.html', async (req, res)=>{
+router.post('/dang-nhap', async (req, res)=>{
     const userBody = req.body;
     Users.findOne({
         $or:[

@@ -18,8 +18,15 @@ const productSchema = new Schema({
     author: {
         type: objectId,
         ref: 'user'
-    }
-    
+    },
+
+    // LIST TAGGING
+    tags  : [
+        {
+            type: objectId,
+            ref: 'tag'
+        }
+    ]
 })
 const productModel = mongoose.model('product', productSchema);
 module.exports = productModel;
