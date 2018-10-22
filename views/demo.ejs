@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="input-group mb-3" >
+                <input type="text" class="form-control" placeholder="Search" id="input1">
+            </div>
+            <ul class="list-group">
+                
+            </ul>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('#input1').keyup(function(){
+            const keyWord = $('#input1').val();
+            if(keyWord.length > 2){
+                $.ajax({
+                    method: 'GET',
+                    url: `/san-pham/tim-kiem/${keyWord}`,
+                    success: function(resp){
+                        $('.list-group').empty()
+                    resp.data.forEach(item =>{
+                        
+                        $('.list-group').append(`
+                            <li class="list-group-item list-group-item-success" id = 'product_search_${item._id}'>
+                                <span>${item.nameProduct}</span>
+                                <span style="color: red">${item.slug}</span>
+                                <span> <button class ='btn btn-primary btnRemove' _id = '${item._id}'> Delete </button> </span>
+                            </li> `
+                        )
+                    })
+                    },
+                    error: function(err){
+
+                    }
+                })
+            }else {
+                $('.list-group').empty()
+            }
+        })
+
+        $('body').on('click', '.btnRemove', function(){
+            var idLi = $(this).attr('_id');
+            $(`#product_search_${idLi}`).remove();
+        })
+    })
+
+</script>
+</html>

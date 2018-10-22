@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+    <input type="text">
+    <ul class="list-group list-group-flush" id="listProduct">
+    </ul>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('input').keyup(function () {
+            var SearchKey = $("input").val();
+            if (SearchKey.length > 2) {
+                $.ajax({
+                    method: "GET",
+                    url: `/san-pham/tim-kiem/${SearchKey}`,
+                    success: function (resp) {
+                        resp.data.forEach(element => {
+                            $('#listProduct').append(
+                                ` <li class="list-group-item" id='${element._id}'>
+                                <span>
+                                    ${element.nameProduct}
+                                </span>
+                                <br>
+                                <strong>
+                                    ${element.slug}
+                                </strong>
+
+                                  <button class="btnRemove" _id ='${element._id}'>Xoa</button>
+                                </li>`
+                            )
+                            console.log(element);
+                        });
+                    }, error: function (err) {
+
+                    }
+                })
+            }
+        })
+        $('body').on('click', '.btnRemove', function () {
+            const iddemo = $(this).attr('_id');
+            $(`#${iddemo}`).remove();
+        });
+    })
+</script>
+
+</html>

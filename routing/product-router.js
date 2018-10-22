@@ -67,6 +67,10 @@ router.get('/tim-kiem/:searchKey', async(req, res) => {
         error: true, message: 'cannot_get_list'
     });
     return res.json({ error: false, data: listProduct })
+});
+
+router.get('/demo-view', async(req, res) => {
+    res.render('demo');        
 })
 
 module.exports = router;

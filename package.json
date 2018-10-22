@@ -12,10 +12,12 @@
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "email-existence": "^0.1.6",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.4",
-    "package": "^1.0.1"
+    "package": "^1.0.1",
+    "packge": "^1.0.0"
   }
 }
