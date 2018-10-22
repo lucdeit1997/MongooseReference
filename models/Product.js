@@ -19,6 +19,7 @@ const productSchema = new Schema({
         type: objectId,
         ref: 'user'
     }
+    
 })
 const productModel = mongoose.model('product', productSchema);
 module.exports = productModel;

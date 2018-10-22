@@ -56,4 +56,17 @@ router.get('/lay-san-pham-theo-id/:id', (req, res) =>{
     })
 })
 
+router.get('/tim-kiem/:searchKey', async(req, res) => {
+    const { searchKey } = req.params;
+
+    // SEARCH PRODUCT WITH KEY
+    let listProduct = await product.find({
+        nameProduct: new RegExp(searchKey, 'i')
+    });
+    if (!listProduct) return res.json({
+        error: true, message: 'cannot_get_list'
+    });
+    return res.json({ error: false, data: listProduct })
+})
+
 module.exports = router;
